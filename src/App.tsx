@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Display} from "./Components/Display";
+import {Counter} from "./Components/Counter";
+import {Reset} from "./Components/Reset";
+import {UniversalButton} from "./Components/UniversalButton";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    let [count, setCount] = useState<number>(0);
+
+    let [disabled, setDisbled] = useState<boolean>(false)
+
+    const disableButton = () => {
+        if (count === 5) {
+            disabled = !disabled
+            setDisbled(disabled)
+        }
+    };
+
+    const resetDisable = () => {
+        disabled=!disabled
+        setCount(0);
+        setDisbled(disabled)
+
+    };
+
+    const addCount = () => {
+        count++
+        setCount(count)
+        disableButton()
+    };
+
+    return (
+        <div className={"wrapper"}>
+            <Display count={count} disabled={disabled}/>
+           {/* <Counter name={"Counter"} disabled={disabled} addCount={addCount} />
+            <Reset name={"Reset"} disabled={!disabled} resetDisable={resetDisable}/>*/}
+            <UniversalButton name={"Counter"} disabled={disabled} onClickAction={addCount} positon={"b"}/>
+            <UniversalButton name={"Reset"} disabled={!disabled} onClickAction={resetDisable} positon={"c"} />
+
+        </div>
+    );
 }
 
 export default App;
+
+
