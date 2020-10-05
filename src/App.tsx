@@ -1,44 +1,32 @@
 import React, {useState} from 'react';
 import './App.css';
 import {Display} from "./Components/Display";
-import {Counter} from "./Components/Counter";
-import {Reset} from "./Components/Reset";
 import {UniversalButton} from "./Components/UniversalButton";
 
 function App() {
+    const maxValue = 5;
 
-    let [count, setCount] = useState<number>(0);
+    let [value, setValue] = useState<number>(0);
+    let [disabled, setDisabled] = useState(false)
 
-    let [disabled, setDisbled] = useState<boolean>(false)
-
-    const disableButton = () => {
-        if (count === 5) {
+    const increment = () => {
+        setValue(++value)
+        if (value === maxValue) {
             disabled = !disabled
-            setDisbled(disabled)
+            setDisabled(disabled)
         }
-    };
+    }
 
-    const resetDisable = () => {
-        disabled=!disabled
-        setCount(0);
-        setDisbled(disabled)
-
-    };
-
-    const addCount = () => {
-        count++
-        setCount(count)
-        disableButton()
-    };
+    const reset = () => {
+        setValue(0)
+        setDisabled(false)
+    }
 
     return (
         <div className={"wrapper"}>
-            <Display count={count} disabled={disabled}/>
-           {/* <Counter name={"Counter"} disabled={disabled} addCount={addCount} />
-            <Reset name={"Reset"} disabled={!disabled} resetDisable={resetDisable}/>*/}
-            <UniversalButton name={"Counter"} disabled={disabled} onClickAction={addCount} positon={"b"}/>
-            <UniversalButton name={"Reset"} disabled={!disabled} onClickAction={resetDisable} positon={"c"} />
-
+            <Display value={value} disabled={maxValue === value}/>
+            <UniversalButton name={"Counter"} onClickAction={increment} positon={"b"} disabled={disabled}/>
+            <UniversalButton name={"Reset"} onClickAction={reset} positon={"c"} disabled={!disabled}/>
         </div>
     );
 }

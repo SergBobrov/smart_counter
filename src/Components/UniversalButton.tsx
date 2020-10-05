@@ -2,9 +2,10 @@ import React from "react";
 
 type counterPropsType = {
     onClickAction: () => void
-    disabled: boolean;
-    name: string
+    disabled: boolean
     positon: string
+    name: string
+
 }
 
 export function UniversalButton(props: counterPropsType) {
@@ -20,10 +21,12 @@ export function UniversalButton(props: counterPropsType) {
         width: "60px"
     }
 
+
+
     return (
 
         <div style={counterClass}>
-            <button onClick={props.onClickAction} disabled={props.disabled} >{props.name}</button>
+            <button disabled={props.disabled} onClick={props.onClickAction}>{props.name}</button>
         </div>)
         ;
 }

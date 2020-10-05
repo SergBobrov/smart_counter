@@ -2,7 +2,7 @@ import React from "react";
 
 
 type DisplayPropsType = {
-    count: number;
+    value: number;
     disabled: boolean
 }
 
@@ -22,6 +22,6 @@ export function Display(props: DisplayPropsType) {
 
     return (
         <div style={displayClass}>
-            {props.count}
+            {props.value}
         </div>)
 }
