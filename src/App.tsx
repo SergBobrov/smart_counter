@@ -11,26 +11,34 @@ function App() {
     let [startValue, setStartValue] = useState<number>(0);
     let [maxValue, setMaxValue] = useState<number>(5);
 
-    let [disabled, setDisabled] = useState(false)
-
 
     const increment = () => {
         setValue(++value)
         if (value === maxValue) {
-            disabled = !disabled
-            setDisabled(disabled)
         }
     }
 
     const reset = () => {
         setValue(startValue)
-        setDisabled(!disabled)
         value = startValue
     }
 
 
     const setCounterValue = () => {
         setValue(startValue)
+    }
+
+    const disabledSet = () => {
+        return false
+    }
+
+    const disabledInc = () => {
+
+        return value === maxValue
+    }
+
+    const disabledReset = () => {
+        return false
     }
 
 
@@ -42,14 +50,14 @@ function App() {
                     <ValueInput setValue={setStartValue} name={"start value:"}/>
                 </div>
                 <div className={"buttons_block"}>
-                    <UniversalButton name={"set"} onClickAction={setCounterValue} disabled={disabled}/>
+                    <UniversalButton name={"set"} onClickAction={setCounterValue} disabled={disabledSet()}/>
                 </div>
             </div>
             <div className={"second_counter"}>
-                <Display value={value} disabled={disabled}/>
+                <Display value={value} />
                 <div className={"buttons_block"}>
-                    <UniversalButton name={"inc"} onClickAction={increment} disabled={disabled}/>
-                    <UniversalButton name={"reset"} onClickAction={reset} disabled={!disabled}/>
+                    <UniversalButton name={"inc"} onClickAction={increment} disabled={disabledInc()}/>
+                    <UniversalButton name={"reset"} onClickAction={reset} disabled={disabledReset()}/>
                 </div>
             </div>
         </div>

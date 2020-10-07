@@ -3,19 +3,20 @@ import './counter.css';
 
 type counterPropsType = {
     onClickAction: () => void
-    disabled: boolean
     name: string
+    disabled: boolean
 
 }
 
-export function UniversalButton(props: counterPropsType) {
+export const UniversalButton: React.FC<counterPropsType> = (
+    {onClickAction, name, disabled}) => {
 
-    // const disablred=  maxa
+
 
     return (
 
         <div className={"button_wrapper"}>
-            <button className={"button"} disabled={props.disabled} onClick={props.onClickAction}>{props.name}</button>
+            <button className={"button"} disabled={disabled} onClick={onClickAction}>{name}</button>
         </div>
     )
 
