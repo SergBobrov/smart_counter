@@ -29,7 +29,7 @@ function App() {
     }
 
     const disabledSet = () => {
-        if (startValue !== 0 || maxValue !==5) {
+        if (startValue !== 0 || maxValue !== 5) {
             return false
         }
         return true;
@@ -42,6 +42,10 @@ function App() {
 
     const disabledReset = () => {
         return false
+    }
+
+    const disabledDisplay = () => {
+        return value === maxValue
     }
 
 
@@ -57,7 +61,7 @@ function App() {
                 </div>
             </div>
             <div className={"second_counter"}>
-                <Display value={value} />
+                <Display disabled={disabledDisplay()} value={value}/>
                 <div className={"buttons_block"}>
                     <UniversalButton name={"inc"} onClickAction={increment} disabled={disabledInc()}/>
                     <UniversalButton name={"reset"} onClickAction={reset} disabled={disabledReset()}/>
