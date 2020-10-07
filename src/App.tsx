@@ -1,13 +1,18 @@
 import React, {useState} from 'react';
-import './App.css';
+import './Components/counter.css';
 import {Display} from "./Components/Display";
 import {UniversalButton} from "./Components/UniversalButton";
+import {ValueInput} from "./Components/ValueInput";
 
 function App() {
-    const maxValue = 5;
+
 
     let [value, setValue] = useState<number>(0);
+    let [startValue, setStartValue] = useState<number>(0);
+    let [maxValue, setMaxValue] = useState<number>(5);
+
     let [disabled, setDisabled] = useState(false)
+
 
     const increment = () => {
         setValue(++value)
@@ -18,15 +23,35 @@ function App() {
     }
 
     const reset = () => {
-        setValue(0)
-        setDisabled(false)
+        setValue(startValue)
+        setDisabled(!disabled)
+        value = startValue
     }
+
+
+    const setCounterValue = () => {
+        setValue(startValue)
+    }
+
 
     return (
         <div className={"wrapper"}>
-            <Display value={value} disabled={maxValue === value}/>
-            <UniversalButton name={"Counter"} onClickAction={increment} positon={"b"} disabled={disabled}/>
-            <UniversalButton name={"Reset"} onClickAction={reset} positon={"c"} disabled={!disabled}/>
+            <div className={"first_counter"}>
+                <div className={"input_block"}>
+                    <ValueInput setValue={setMaxValue} name={"max value:"}/>
+                    <ValueInput setValue={setStartValue} name={"start value:"}/>
+                </div>
+                <div className={"buttons_block"}>
+                    <UniversalButton name={"set"} onClickAction={setCounterValue} disabled={disabled}/>
+                </div>
+            </div>
+            <div className={"second_counter"}>
+                <Display value={value} disabled={disabled}/>
+                <div className={"buttons_block"}>
+                    <UniversalButton name={"inc"} onClickAction={increment} disabled={disabled}/>
+                    <UniversalButton name={"reset"} onClickAction={reset} disabled={!disabled}/>
+                </div>
+            </div>
         </div>
     );
 }
