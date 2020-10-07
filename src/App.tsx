@@ -12,62 +12,55 @@ function App() {
     let [maxValue, setMaxValue] = useState<number>(5);
 
     let [disableSet, setDisableSet] = useState(true)
-    let [disableSet, setDisableSet] = useState(true)
-    let [disableSet, setDisableSet] = useState(true)
-
+    let [disableInc, setDisableInc] = useState(false)
+    let [disableReset, setDisableReset] = useState(false)
 
 
     const increment = () => {
         if (typeof value === "number") {
             setValue(++value)
         }
+        if (value === maxValue) {
+            setDisableInc(true)
+        }
     }
 
     const reset = () => {
         setValue(startValue)
         value = startValue
+        setDisableInc(false)
     }
 
 
     const setCounterValue = () => {
         setValue(startValue)
+        setDisableReset(false)
+        setDisableInc(false)
     }
 
-    const disabledSet = () => {
-        if (maxValue <= startValue || startValue < 0) {
-            return true
-        }
-        return false
-    }
-
-    const disabledInc = () => {
-
-        return value === maxValue
-    }
-
-    const disabledReset = () => {
-
-        return false
-    }
-
-    const disabledDisplay = () => {
-        if (startValue < 0) return true
-        return value === maxValue
-    }
 
     const setMaxValueCallBack = (maxValue: number) => {
+        setDisableSet(false)
+        setDisableInc(true)
+        setDisableReset(true)
         value = "enter values and press 'set'"
-        if (maxValue <= startValue) {
+        if (startValue < 0 || startValue >= maxValue) {
             value = "Incorrect value!"
+            setDisableSet(true)
         }
         setMaxValue(maxValue)
         setValue(value)
     }
 
     const setStartValueCallBack = (startValue: number) => {
+        setDisableSet(false)
+        setDisableInc(true)
+        setDisableReset(true)
         value = "enter values and press 'set'"
         if (startValue < 0 || startValue >= maxValue) {
             value = "Incorrect value!"
+            setDisableSet(true)
+
         }
         setValue(value)
 
@@ -79,25 +72,30 @@ function App() {
             value = startValue
         }
         setStartValue(startValue)
+    }
 
+    const disabledInput = () => {
+        return value === "Incorrect value!";
     }
 
     return (
         <div className={"wrapper"}>
             <div className={"first_counter"}>
                 <div className={"input_block"}>
-                    <ValueInput value={maxValue} setValue={setMaxValueCallBack} name={"max value:"}/>
-                    <ValueInput value={startValue} setValue={setStartValueCallBack} name={"start value:"}/>
+                    <ValueInput disabled={disabledInput()} value={maxValue} setValue={setMaxValueCallBack}
+                                name={"max value:"}/>
+                    <ValueInput disabled={disabledInput()} value={startValue} setValue={setStartValueCallBack}
+                                name={"start value:"}/>
                 </div>
                 <div className={"buttons_block"}>
-                    <UniversalButton name={"set"} onClickAction={setCounterValue} disabled={disabledSet()}/>
+                    <UniversalButton name={"set"} onClickAction={setCounterValue} disabled={disableSet}/>
                 </div>
             </div>
             <div className={"second_counter"}>
-                <Display startValue={startValue} maxValue={maxValue} value={value}/>
+                <Display disabled={disableInc} startValue={startValue} maxValue={maxValue} value={value}/>
                 <div className={"buttons_block"}>
-                    <UniversalButton name={"inc"} onClickAction={increment} disabled={disabledInc()}/>
-                    <UniversalButton name={"reset"} onClickAction={reset} disabled={disabledReset()}/>
+                    <UniversalButton name={"inc"} onClickAction={increment} disabled={disableInc}/>
+                    <UniversalButton name={"reset"} onClickAction={reset} disabled={disableReset}/>
                 </div>
             </div>
         </div>

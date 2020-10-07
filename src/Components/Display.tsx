@@ -5,24 +5,26 @@ type DisplayPropsType = {
     value: number | string;
     startValue: number
     maxValue: number
+    disabled: boolean
 }
 
 export const Display: React.FC<DisplayPropsType> =
-    ({value, maxValue, startValue}) => {
+    ({disabled, value, maxValue, startValue}) => {
 
         const showValue = () => {
-           return value
+            return value
         }
 
         const className = () => {
-
-
-            // if(value === maxValue){
-            //     return "display display_red"
-            // }
-            // if (startValue > maxValue){
-            //     return "display display_red text"
-            // }
+            if (value === "Incorrect value!") {
+                return "display display_red text"
+            }
+            if (value === "enter values and press 'set'") {
+                return "display text"
+            }
+            if (disabled) {
+                return "display display_red";
+            }
             return 'display'
 
         }

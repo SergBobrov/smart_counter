@@ -51,7 +51,7 @@
 
 .display {
     color: #60D2F5;
-    font-size: medium;
+    font-size: xx-large;
     font-weight: bold;
     background-color: #2A2C36;
     border: 1px solid #60D2F5;
@@ -64,6 +64,7 @@
 }
 
 .display_red {
+    font-size: 42px;
     color: crimson;
     }
 
@@ -86,6 +87,11 @@
     border-radius: 3px;
     margin: 10px;
     text-align: center;
+}
+
+.input_error {
+    background: pink;
+    border: 1px solid crimson;
 }
 
 .value_span {
