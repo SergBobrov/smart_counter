@@ -36,6 +36,7 @@ function App() {
         setValue(startValue)
         setDisableReset(false)
         setDisableInc(false)
+        setDisableSet(true)
     }
 
 
