@@ -29,7 +29,10 @@ function App() {
     }
 
     const disabledSet = () => {
-        return false
+        if (startValue !== 0 || maxValue !==5) {
+            return false
+        }
+        return true;
     }
 
     const disabledInc = () => {
