@@ -10,15 +10,10 @@ type counterPropsType = {
 
 export const UniversalButton: React.FC<counterPropsType> = (
     {onClickAction, name, disabled}) => {
-
-
-
     return (
-
         <div className={"button_wrapper"}>
             <button className={`button  + ${disabled ? "button_disabled" : ""}`}
                     disabled={disabled} onClick={onClickAction}>{name}</button>
         </div>
     )
-
 }

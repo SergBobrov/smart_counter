@@ -60,17 +60,8 @@ function App() {
         if (startValue < 0 || startValue >= maxValue) {
             value = "Incorrect value!"
             setDisableSet(true)
-
         }
         setValue(value)
-
-
-        if (startValue < 0) {
-            setValue(value)
-        }
-        if (startValue >= 0) {
-            value = startValue
-        }
         setStartValue(startValue)
     }
 

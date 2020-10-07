@@ -11,9 +11,6 @@ type DisplayPropsType = {
 export const Display: React.FC<DisplayPropsType> =
     ({disabled, value, maxValue, startValue}) => {
 
-        const showValue = () => {
-            return value
-        }
 
         const className = () => {
             if (value === "Incorrect value!") {
@@ -31,6 +28,6 @@ export const Display: React.FC<DisplayPropsType> =
 
         return (
             <div className={className()}>
-                {showValue()}
+                {value}
             </div>)
     }
