@@ -3,11 +3,12 @@ import React, {ChangeEvent, Dispatch, SetStateAction} from "react";
 
 type ValueInputType = {
     name: string
-    setValue: Dispatch<SetStateAction<number>>
+    setValue: (s: number) => void
+    value: number
 }
 
 
-export const ValueInput: React.FC<ValueInputType> = ({name, setValue}) => {
+export const ValueInput: React.FC<ValueInputType> = ({name, setValue, value}) => {
 
     const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(+e.currentTarget.value)
@@ -16,7 +17,7 @@ export const ValueInput: React.FC<ValueInputType> = ({name, setValue}) => {
     return (
         <div>
             <span className={"value_span"}>{name}</span>
-            <span><input className={"input"} type="number" onChange={changeValue}/> </span>
+            <span><input value={value} className={"input"} type="number" onChange={changeValue}/> </span>
         </div>
     )
 };

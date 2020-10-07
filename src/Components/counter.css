@@ -35,19 +35,23 @@
 }
 
 
-/*.button {*/
-/*    color: #2A2C36;*/
-/*    background-color: #60D2F5;*/
-/*    border: 1px solid #60D2F5;*/
-/*    border-radius: 3px;*/
-/*    font-size: x-large;*/
-/*    font-weight: bold;*/
-/*    height: 27px;*/
-/*}*/
+.button {
+    color: #2A2C36;
+    background-color: #60D2F5;
+    border: 1px solid #60D2F5;
+    border-radius: 3px;
+    font-size: x-large;
+    font-weight: bold;
+    height: 27px;
+}
+
+.button_disabled {
+    opacity: 0.5;
+}
 
 .display {
     color: #60D2F5;
-    font-size: xx-large;
+    font-size: medium;
     font-weight: bold;
     background-color: #2A2C36;
     border: 1px solid #60D2F5;
@@ -61,16 +65,10 @@
 
 .display_red {
     color: crimson;
-    font-size: xx-large;
-    font-weight: bold;
-    background-color: #2A2C36;
-    border: 1px solid #60D2F5;
-    border-radius: 3px;
-    padding: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-    vertical-align: center;
-    height: 60px;
+    }
+
+.text {
+    font-size: medium;
 }
 
 .input_block {

@@ -7,14 +7,19 @@ import {ValueInput} from "./Components/ValueInput";
 function App() {
 
 
-    let [value, setValue] = useState<number>(0);
+    let [value, setValue] = useState<number | string>(0);
     let [startValue, setStartValue] = useState<number>(0);
     let [maxValue, setMaxValue] = useState<number>(5);
 
+    let [disableSet, setDisableSet] = useState(true)
+    let [disableSet, setDisableSet] = useState(true)
+    let [disableSet, setDisableSet] = useState(true)
+
+
 
     const increment = () => {
-        setValue(++value)
-        if (value === maxValue) {
+        if (typeof value === "number") {
+            setValue(++value)
         }
     }
 
@@ -29,10 +34,10 @@ function App() {
     }
 
     const disabledSet = () => {
-        if (startValue !== 0 || maxValue !== 5) {
-            return false
+        if (maxValue <= startValue || startValue < 0) {
+            return true
         }
-        return true;
+        return false
     }
 
     const disabledInc = () => {
@@ -41,27 +46,55 @@ function App() {
     }
 
     const disabledReset = () => {
+
         return false
     }
 
     const disabledDisplay = () => {
+        if (startValue < 0) return true
         return value === maxValue
     }
 
+    const setMaxValueCallBack = (maxValue: number) => {
+        value = "enter values and press 'set'"
+        if (maxValue <= startValue) {
+            value = "Incorrect value!"
+        }
+        setMaxValue(maxValue)
+        setValue(value)
+    }
+
+    const setStartValueCallBack = (startValue: number) => {
+        value = "enter values and press 'set'"
+        if (startValue < 0 || startValue >= maxValue) {
+            value = "Incorrect value!"
+        }
+        setValue(value)
+
+
+        if (startValue < 0) {
+            setValue(value)
+        }
+        if (startValue >= 0) {
+            value = startValue
+        }
+        setStartValue(startValue)
+
+    }
 
     return (
         <div className={"wrapper"}>
             <div className={"first_counter"}>
                 <div className={"input_block"}>
-                    <ValueInput setValue={setMaxValue} name={"max value:"}/>
-                    <ValueInput setValue={setStartValue} name={"start value:"}/>
+                    <ValueInput value={maxValue} setValue={setMaxValueCallBack} name={"max value:"}/>
+                    <ValueInput value={startValue} setValue={setStartValueCallBack} name={"start value:"}/>
                 </div>
                 <div className={"buttons_block"}>
                     <UniversalButton name={"set"} onClickAction={setCounterValue} disabled={disabledSet()}/>
                 </div>
             </div>
             <div className={"second_counter"}>
-                <Display disabled={disabledDisplay()} value={value}/>
+                <Display startValue={startValue} maxValue={maxValue} value={value}/>
                 <div className={"buttons_block"}>
                     <UniversalButton name={"inc"} onClickAction={increment} disabled={disabledInc()}/>
                     <UniversalButton name={"reset"} onClickAction={reset} disabled={disabledReset()}/>

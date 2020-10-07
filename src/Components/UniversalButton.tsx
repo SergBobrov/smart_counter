@@ -16,7 +16,8 @@ export const UniversalButton: React.FC<counterPropsType> = (
     return (
 
         <div className={"button_wrapper"}>
-            <button className={"button"} disabled={disabled} onClick={onClickAction}>{name}</button>
+            <button className={`button  + ${disabled ? "button_disabled" : ""}`}
+                    disabled={disabled} onClick={onClickAction}>{name}</button>
         </div>
     )
 

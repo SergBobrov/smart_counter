@@ -2,15 +2,33 @@ import React from "react";
 
 
 type DisplayPropsType = {
-    value: number;
-    disabled: boolean
+    value: number | string;
+    startValue: number
+    maxValue: number
 }
 
-export function Display(props: DisplayPropsType) {
+export const Display: React.FC<DisplayPropsType> =
+    ({value, maxValue, startValue}) => {
 
-       return (
-        <div className={props.disabled ? "display_red" : "display"}>
-        {/*<div className={"display"}>*/}
-            {props.value}
-        </div>)
-}
+        const showValue = () => {
+           return value
+        }
+
+        const className = () => {
+
+
+            // if(value === maxValue){
+            //     return "display display_red"
+            // }
+            // if (startValue > maxValue){
+            //     return "display display_red text"
+            // }
+            return 'display'
+
+        }
+
+        return (
+            <div className={className()}>
+                {showValue()}
+            </div>)
+    }
