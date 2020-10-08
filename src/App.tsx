@@ -8,15 +8,15 @@ function App() {
 
 
     let [value, setValue] = useState<number | string>(0);
-    let [startValue, setStartValue] = useState<number>(0);
-    let [maxValue, setMaxValue] = useState<number>(5);
+    let [startValue, setStartValue] = useState<number>(restoreState('startValue', 0));
+    let [maxValue, setMaxValue] = useState<number>(restoreState('maxValue', 5));
 
     let [disableSet, setDisableSet] = useState(true)
     let [disableInc, setDisableInc] = useState(false)
     let [disableReset, setDisableReset] = useState(false)
 
 
-    const increment = () => {
+     const increment = () => {
         if (typeof value === "number") {
             setValue(++value)
         }
@@ -37,10 +37,12 @@ function App() {
         setDisableReset(false)
         setDisableInc(false)
         setDisableSet(true)
+
     }
 
 
     const setMaxValueCallBack = (maxValue: number) => {
+
         setDisableSet(false)
         setDisableInc(true)
         setDisableReset(true)
@@ -64,19 +66,43 @@ function App() {
         }
         setValue(value)
         setStartValue(startValue)
+
+        saveState("startValue", startValue)
+        saveState("maxValue", maxValue)
     }
 
     const disabledInput = () => {
         return value === "Incorrect value!";
     }
 
+    const onMaxInputClick = () => {
+        // setMaxValue(+'')
+    }
+
+    const onStartInputClick = () => {
+        // setStartValue(+'')
+    }
+
+    function saveState<T>(key: string, state: T) { //типизация дженериков
+        const stateAsString = JSON.stringify(state);
+        localStorage.setItem(key, stateAsString)
+    }
+
+    function restoreState<T>(key: string, defaultState: T) {
+        const stateAsString = localStorage.getItem(key);
+        if (stateAsString !== null) defaultState = JSON.parse(stateAsString) as T;
+        return defaultState;
+    }
+
     return (
         <div className={"wrapper"}>
             <div className={"first_counter"}>
                 <div className={"input_block"}>
-                    <ValueInput disabled={disabledInput()} value={maxValue} setValue={setMaxValueCallBack}
+                    <ValueInput onValueInputClick={onMaxInputClick} disabled={disabledInput()} value={maxValue}
+                                setValue={setMaxValueCallBack}
                                 name={"max value:"}/>
-                    <ValueInput disabled={disabledInput()} value={startValue} setValue={setStartValueCallBack}
+                    <ValueInput onValueInputClick={onStartInputClick} disabled={disabledInput()} value={startValue}
+                                setValue={setStartValueCallBack}
                                 name={"start value:"}/>
                 </div>
                 <div className={"buttons_block"}>
