@@ -1,10 +1,10 @@
 .wrapper {
     background-color: #2A2C36;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    flex-wrap: wrap;
 }
 
 .first_counter {
@@ -30,7 +30,7 @@
     border: 1px solid #60D2F5;
     border-radius: 3px;
     padding: 10px;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -38,11 +38,18 @@
 .button {
     color: #2A2C36;
     background-color: #60D2F5;
-    border: 1px solid #60D2F5;
     border-radius: 3px;
     font-size: x-large;
     font-weight: bold;
-    height: 27px;
+    height: 30px;
+    outline: 1px solid transparent;
+    border: none;
+}
+
+.button:active {
+    color: #60D2F5;
+    background-color: #2A2C36;
+    transition: 0.2s;
 }
 
 .button_disabled {
@@ -50,33 +57,37 @@
 }
 
 .display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #60D2F5;
     font-size: xx-large;
     font-weight: bold;
     background-color: #2A2C36;
     border: 1px solid #60D2F5;
     border-radius: 3px;
-    padding: 10px;
     margin-bottom: 10px;
-    text-align: center;
-    vertical-align: center;
-    height: 60px;
+    height: 90px;
 }
 
 .display_red {
     font-size: 42px;
     color: crimson;
-    }
+}
 
 .text {
     font-size: medium;
 }
 
 .input_block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     border: 1px solid #60D2F5;
     margin-bottom: 10px;
     border-radius: 3px;
     height: 80px;
+    padding: 10px;
 }
 
 .input {
@@ -85,7 +96,6 @@
     height: 10px;
     border: 1px solid #60D2F5;
     border-radius: 3px;
-    margin: 10px;
     text-align: center;
 }
 
@@ -98,5 +108,10 @@
     color: #60D2F5;
     font-size: 12px;
     font-weight: bold;
-    margin: 10px;
+}
+
+.fields_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

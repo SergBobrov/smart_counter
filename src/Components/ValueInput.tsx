@@ -18,10 +18,10 @@ export const ValueInput: React.FC<ValueInputType> = ({name, setValue, value, dis
 
 
     return (
-        <div>
+        <div className={"fields_wrapper"}>
             <span className={"value_span"}>{name}</span>
-            <span><input value={value} className={`input ${disabled ? "input_error" : ""}`} type="number"
-                         onChange={changeValue} onKeyPress={onValueInputClick}/>  </span>
+            <input value={value} className={`input ${disabled ? "input_error" : ""}`} type="number"
+                   onChange={changeValue} onKeyPress={onValueInputClick}/>
         </div>
     )
 };
