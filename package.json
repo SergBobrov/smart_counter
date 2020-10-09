@@ -1,6 +1,6 @@
 {
   "name": "stage1-test-app",
-  "homepage": "https://sergbobrov.github.io/stage1-test-app",
+  "homepage": "https://sergbobrov.github.io/smart_counter",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

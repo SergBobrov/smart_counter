@@ -81,7 +81,9 @@ function App() {
 
     const onStartInputClick = () => {
         // setStartValue(+'')
+
     }
+
 
     function saveState<T>(key: string, state: T) { //типизация дженериков
         const stateAsString = JSON.stringify(state);
