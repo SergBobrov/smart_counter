@@ -75,16 +75,6 @@ function App() {
         return value === "Incorrect value!";
     }
 
-    const onMaxInputClick = () => {
-        setMaxValue("")
-    }
-
-    const onStartInputClick = () => {
-        setStartValue("")
-
-    }
-
-
     function saveState<T>(key: string, state: T) { //типизация дженериков
         const stateAsString = JSON.stringify(state);
         localStorage.setItem(key, stateAsString)
@@ -100,10 +90,10 @@ function App() {
         <div className={"wrapper"}>
             <div className={"first_counter"}>
                 <div className={"input_block"}>
-                    <ValueInput onValueInputClick={onMaxInputClick} disabled={disabledInput()} value={maxValue}
+                    <ValueInput disabled={disabledInput()} value={maxValue}
                                 setValue={setMaxValueCallBack}
                                 name={"max value:"}/>
-                    <ValueInput onValueInputClick={onStartInputClick} disabled={disabledInput()} value={startValue}
+                    <ValueInput disabled={disabledInput()} value={startValue}
                                 setValue={setStartValueCallBack}
                                 name={"start value:"}/>
                 </div>

@@ -6,11 +6,10 @@ type ValueInputType = {
     setValue: (s: number) => void
     value: string
     disabled: boolean
-    onValueInputClick: () => void
 }
 
 
-export const ValueInput: React.FC<ValueInputType> = ({name, setValue, value, disabled, onValueInputClick}) => {
+export const ValueInput: React.FC<ValueInputType> = ({name, setValue, value, disabled}) => {
 
     const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
 
@@ -18,13 +17,11 @@ export const ValueInput: React.FC<ValueInputType> = ({name, setValue, value, dis
     }
 
 
-
-
     return (
         <div className={"fields_wrapper"}>
             <span className={"value_span"}>{name}</span>
             <input value={value} className={`input ${disabled ? "input_error" : ""}`} type="number"
-                   onChange={changeValue} onClick={onValueInputClick}/>
+                   onChange={changeValue}/>
         </div>
     )
 };
