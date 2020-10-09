@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {KeyboardEvent, useState} from 'react';
 import './Components/counter.css';
 import {Display} from "./Components/Display";
 import {UniversalButton} from "./Components/UniversalButton";
@@ -8,32 +8,32 @@ function App() {
 
 
     let [value, setValue] = useState<number | string>(0);
-    let [startValue, setStartValue] = useState<number>(restoreState('startValue', 0));
-    let [maxValue, setMaxValue] = useState<number>(restoreState('maxValue', 5));
+    let [startValue, setStartValue] = useState<string>(restoreState('startValue', "0"));
+    let [maxValue, setMaxValue] = useState<string>(restoreState('maxValue', "5"));
 
     let [disableSet, setDisableSet] = useState(true)
     let [disableInc, setDisableInc] = useState(false)
     let [disableReset, setDisableReset] = useState(false)
 
 
-     const increment = () => {
+    const increment = () => {
         if (typeof value === "number") {
             setValue(++value)
         }
-        if (value === maxValue) {
+        if (value === +maxValue) {
             setDisableInc(true)
         }
     }
 
     const reset = () => {
-        setValue(startValue)
-        value = startValue
+        setValue(+startValue)
+        value = +startValue
         setDisableInc(false)
     }
 
 
     const setCounterValue = () => {
-        setValue(startValue)
+        setValue(+startValue)
         setDisableReset(false)
         setDisableInc(false)
         setDisableSet(true)
@@ -47,11 +47,11 @@ function App() {
         setDisableInc(true)
         setDisableReset(true)
         value = "enter values and press 'set'"
-        if (startValue < 0 || startValue >= maxValue) {
+        if (+startValue < 0 || +startValue >= +maxValue) {
             value = "Incorrect value!"
             setDisableSet(true)
         }
-        setMaxValue(maxValue)
+        setMaxValue(maxValue.toString())
         setValue(value)
     }
 
@@ -60,12 +60,12 @@ function App() {
         setDisableInc(true)
         setDisableReset(true)
         value = "enter values and press 'set'"
-        if (startValue < 0 || startValue >= maxValue) {
+        if (+startValue < 0 || +startValue >= +maxValue) {
             value = "Incorrect value!"
             setDisableSet(true)
         }
         setValue(value)
-        setStartValue(startValue)
+        setStartValue(startValue.toString())
 
         saveState("startValue", startValue)
         saveState("maxValue", maxValue)
@@ -76,11 +76,11 @@ function App() {
     }
 
     const onMaxInputClick = () => {
-        // setMaxValue(+'')
+        setMaxValue("")
     }
 
     const onStartInputClick = () => {
-        // setStartValue(+'')
+        setStartValue("")
 
     }
 
