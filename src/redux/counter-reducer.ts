@@ -74,7 +74,7 @@ export const counterReducer = (state: counterReducerType = counterReducerInitSta
                 setDisabled: action.setDisabled,
                 incDisabled: action.incDisabled,
                 resetDisabled: action.resetDisabled,
-                maxValue: action.startValue,
+                startValue: action.startValue,
             }
         default:
             return state

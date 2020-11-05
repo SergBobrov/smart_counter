@@ -8,18 +8,11 @@ import {
     incrementCurrentValue,
     resetCurrentValue,
     setCurrentValue,
-    setMaxValue
+    setMaxValue, setStartValue
 } from "../redux/counter-reducer";
 import {useDispatch, useSelector} from "react-redux";
 
 export const CounterContainer = () => {
-    // let [value, setValue] = useState<number | string>(0);
-    // // let [startValue, setStartValue] = useState<number>(restoreState('startValue', 0));
-    // // let [maxValue, setMaxValue] = useState<number>(restoreState('maxValue', 5));
-    //
-    // let [disableSet, setDisableSet] = useState(true)
-    // let [disableInc, setDisableInc] = useState(false)
-    // let [disableReset, setDisableReset] = useState(false)
 
     const state = useSelector<IGlobalState, counterReducerType>(state => state.counterState)
 
@@ -70,6 +63,7 @@ export const CounterContainer = () => {
     }
 
     const setStartValueCallBack = (startValue: number) => {
+        debugger
         setDisabled = false
         incDisabled = true
         resetDisabled = true
@@ -80,15 +74,17 @@ export const CounterContainer = () => {
             setDisabled = true
         }
 
-        saveState("startValue", startValue)
-        saveState("maxValue", maxValue)
 
-        dispatch(setMaxValue(currentValue, setDisabled, incDisabled, resetDisabled, startValue))
+        dispatch(setStartValue(currentValue, setDisabled, incDisabled, resetDisabled, startValue))
     }
 
     const disabledInput = () => {
         return currentValue === "Incorrect value!";
     }
+
+
+    saveState("startValue", startValue)
+    saveState("maxValue", maxValue)
 
 
     function saveState<T>(key: string, state: T) {
