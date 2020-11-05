@@ -1,5 +1,5 @@
 import React from "react";
-import './counter.css';
+import '../styles/counter.css';
 
 type counterPropsType = {
     onClickAction: () => void
