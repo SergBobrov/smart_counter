@@ -78,9 +78,7 @@ export const CounterContainer = () => {
         dispatch(setStartValue(currentValue, setDisabled, incDisabled, resetDisabled, startValue))
     }
 
-    const disabledInput = () => {
-        return currentValue === "Incorrect value!";
-    }
+
 
 
     saveState("startValue", startValue)
@@ -102,10 +100,10 @@ export const CounterContainer = () => {
         <div className={"wrapper"}>
             <div className={"first_counter"}>
                 <div className={"input_block"}>
-                    <ValueInput disabled={disabledInput()} value={maxValue}
+                    <ValueInput currentValue={currentValue} value={maxValue}
                                 setValue={setMaxValueCallBack}
                                 name={"max value:"}/>
-                    <ValueInput disabled={disabledInput()} value={startValue}
+                    <ValueInput currentValue={currentValue} value={startValue}
                                 setValue={setStartValueCallBack}
                                 name={"start value:"}/>
                 </div>
