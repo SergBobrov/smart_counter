@@ -3,8 +3,8 @@ import React from "react";
 
 type DisplayPropsType = {
     value: number | string;
-    startValue: string
-    maxValue: string
+    startValue: number
+    maxValue: number
     disabled: boolean
 }
 
